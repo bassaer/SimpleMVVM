@@ -8,9 +8,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), CountNavigator {
 
-    private val TAG = "MAIN_VIEWMODEL_TAG"
+    companion object {
+        const val TAG = "MAIN_VIEW_MODEL_TAG"
+    }
 
-    lateinit var viewModel: CountViewModel
+    private lateinit var viewModel: CountViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
