@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity(), CountNavigator {
 
         val fragment = findOrCreateViewFragment()
         viewModel = findOrCreateViewModel()
-        viewModel.countNavigator = this
 
         fragment.setViewModel(viewModel)
     }

@@ -27,7 +27,7 @@ class CounterFragment(): Fragment(){
         return view
     }
 
-    fun setupFab() {
+    private fun setupFab() {
         val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
         fab?.setOnClickListener {
             countViewModel?.countUp()
@@ -35,7 +35,7 @@ class CounterFragment(): Fragment(){
     }
 
     companion object {
-       const val STATUS_ID = "STATUS_ID"
+       private const val STATUS_ID = "STATUS_ID"
        fun newInstance(id: Int) = CounterFragment().apply {
            arguments = Bundle().apply {
                putInt(STATUS_ID, id)
