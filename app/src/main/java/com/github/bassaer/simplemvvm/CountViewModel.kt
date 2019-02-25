@@ -1,6 +1,6 @@
 package com.github.bassaer.simplemvvm
 
-import android.databinding.ObservableInt
+import androidx.databinding.ObservableInt
 
 class CountViewModel {
     val count = ObservableInt()
