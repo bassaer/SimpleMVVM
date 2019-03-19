@@ -1,9 +1,9 @@
 package com.github.bassaer.simplemvvm
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), CountNavigator {
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), CountNavigator {
     }
 
     private fun findOrCreateViewFragment(): CounterFragment {
-        var fragment = supportFragmentManager?.findFragmentById(R.id.contentFrame) as? CounterFragment
+        var fragment = supportFragmentManager.findFragmentById(R.id.contentFrame) as? CounterFragment
         if (fragment == null) {
             fragment = CounterFragment.newInstance(0)
             val transaction = supportFragmentManager.beginTransaction()
