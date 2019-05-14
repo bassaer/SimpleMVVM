@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">SimpleMVVM</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_reset">Reset</string>
+    <string name="default_count">0</string>
+    <string name="default_none">None</string>
+    <string name="dialog_title">New User</string>
+    <string name="positive_button">OK</string>
+    <string name="negative_button">Cancel</string>
+    <string name="username">Username</string>
+    <string name="repo">Repository</string>
+    <string name="ng_message">Error!</string>
+    <string name="loading_message">Loading…</string>
+    <string name="no_data_message">No Data</string>
+    <string name="github">GitHub</string>
 </resources>

@@ -1,5 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-
-    <dimen name="font_normal">96sp</dimen>
+    <dimen name="font_small">18sp</dimen>
+    <dimen name="font_normal">24sp</dimen>
+    <dimen name="font_large">96sp</dimen>
+    <dimen name="cell_padding">16dp</dimen>
+    <dimen name="cell_margin">5dp</dimen>
 </resources>

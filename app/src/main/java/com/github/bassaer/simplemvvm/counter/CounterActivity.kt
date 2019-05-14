@@ -1,12 +1,14 @@
-package com.github.bassaer.simplemvvm
+package com.github.bassaer.simplemvvm.counter
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.github.bassaer.simplemvvm.R
+import com.github.bassaer.simplemvvm.ViewModelHolder
+import kotlinx.android.synthetic.main.counter_act.*
 
-class MainActivity : AppCompatActivity(), CountNavigator {
+class CounterActivity : AppCompatActivity(), CountNavigator {
 
     companion object {
         const val TAG = "MAIN_VIEW_MODEL_TAG"
@@ -16,7 +18,7 @@ class MainActivity : AppCompatActivity(), CountNavigator {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.counter_act)
         setSupportActionBar(toolbar)
 
         val fragment = findOrCreateViewFragment()
@@ -48,7 +50,10 @@ class MainActivity : AppCompatActivity(), CountNavigator {
         }
         val viewModel = CountViewModel()
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(ViewModelHolder.createContainer(viewModel), TAG)
+        transaction.add(
+            ViewModelHolder.createContainer(viewModel),
+            TAG
+        )
         transaction.commit()
         return viewModel
     }

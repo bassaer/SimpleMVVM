@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="viewmodel" type="com.github.bassaer.simplemvvm.userlist.UserViewModel"/>
+    </data>
+
+    <LinearLayout
+
+            android:id="@+id/user_cell_root"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="@dimen/cell_padding">
+
+        <TextView
+                android:id="@+id/cell_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@{viewmodel.name}"
+                android:textSize="@dimen/font_normal"
+                android:textColor="@android:color/black">
+        </TextView>
+
+        <TextView
+                android:id="@+id/cell_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@{viewmodel.count}"
+                android:textSize="@dimen/font_small"/>
+    </LinearLayout>
+
+</layout>

@@ -1,4 +1,4 @@
-package com.github.bassaer.simplemvvm
+package com.github.bassaer.simplemvvm.counter
 
 import androidx.databinding.ObservableInt
 
