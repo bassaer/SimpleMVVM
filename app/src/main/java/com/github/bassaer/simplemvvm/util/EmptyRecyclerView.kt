@@ -39,5 +39,4 @@ class EmptyRecyclerView @JvmOverloads constructor(
         emptyView = view
         initView()
     }
-
 }

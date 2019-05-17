@@ -34,6 +34,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompatVer"
     implementation "androidx.core:core-ktx:$coreKtxVer"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLahyoutVer"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha05"
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-alpha05"
     implementation "com.google.android.material:material:$materialVer"
     implementation "androidx.room:room-runtime:$roomVer"
     implementation "androidx.room:room-ktx:$roomVer"

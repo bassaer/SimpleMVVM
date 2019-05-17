@@ -1,11 +1,15 @@
 package com.github.bassaer.simplemvvm.userlist
 
+import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableField
 import com.github.bassaer.simplemvvm.data.local.User
 
-class UserlistViewModel {
-    val users = ObservableArrayList<User>()
+class UserlistViewModel: BaseObservable() {
+    var users = ObservableArrayList<User>()
+    val name = ObservableField<String>()
+    val count = ObservableField<Int>()
 
     var navigator: UserlistNavigator? = null
 
