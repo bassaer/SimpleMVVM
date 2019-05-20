@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.bassaer.simplemvvm.R
-import com.github.bassaer.simplemvvm.databinding.UserlistFragBinding
+import com.github.bassaer.simplemvvm.databinding.UserlistFlagBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class UserlistFragment : Fragment() {
 
     var viewModel: UserlistViewModel? = null
-    private lateinit var userlistFlagBinding: UserlistFragBinding
+    private lateinit var userlistFlagBinding: UserlistFlagBinding
     private lateinit var adapter: UserListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        userlistFlagBinding = UserlistFragBinding.inflate(inflater, container, false)
+        userlistFlagBinding = UserlistFlagBinding.inflate(inflater, container, false)
         userlistFlagBinding.viewmodel  = viewModel
         setHasOptionsMenu(true)
         return userlistFlagBinding.root
