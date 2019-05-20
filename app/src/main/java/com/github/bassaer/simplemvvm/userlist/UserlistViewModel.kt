@@ -5,8 +5,9 @@ import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import com.github.bassaer.simplemvvm.data.local.User
+import com.github.bassaer.simplemvvm.data.local.UserRepository
 
-class UserlistViewModel: BaseObservable() {
+class UserlistViewModel(private val userRepository: UserRepository): BaseObservable() {
     var users = ObservableArrayList<User>()
     val name = ObservableField<String>()
     val count = ObservableField<Int>()
@@ -17,11 +18,8 @@ class UserlistViewModel: BaseObservable() {
 
     }
 
-    /**
-     * Called by the Data Binding library when the fab is clicked.
-     */
-    fun addNewUser() {
-        navigator?.addNewUser()
+    fun addNewUser(name: String) {
+        userRepository.addUser(name)
     }
 
     fun onActivityDestroyed() {

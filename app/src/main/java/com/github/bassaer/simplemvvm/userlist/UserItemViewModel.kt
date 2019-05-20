@@ -6,7 +6,7 @@ import com.github.bassaer.simplemvvm.data.local.User
 import com.github.bassaer.simplemvvm.data.local.UserRepository
 import java.lang.ref.WeakReference
 
-class UserItemViewModel(userRepository: UserRepository): BaseObservable() {
+class UserItemViewModel(private val userRepository: UserRepository): BaseObservable() {
 
     private val userObservable = ObservableField<User>()
     val name = ObservableField<String>()
@@ -18,6 +18,8 @@ class UserItemViewModel(userRepository: UserRepository): BaseObservable() {
         val userId = getUserId() ?: return
         navigator?.get()?.openCounter(userId)
     }
+
+
 
     private fun getUserId() = userObservable.get()?.id
 }
