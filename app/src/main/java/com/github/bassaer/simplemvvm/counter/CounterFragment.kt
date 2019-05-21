@@ -1,15 +1,16 @@
-package com.github.bassaer.simplemvvm
+package com.github.bassaer.simplemvvm.counter
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.databinding.CounterFragBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class CounterFragment(): Fragment(){
-    var countViewModel: CountViewModel? = null
+class CounterFragment: Fragment(){
+    private var countViewModel: CountViewModel? = null
 
     fun setViewModel(viewModel: CountViewModel) {
         countViewModel = viewModel
