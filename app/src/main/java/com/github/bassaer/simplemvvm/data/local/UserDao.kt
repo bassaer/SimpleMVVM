@@ -13,9 +13,9 @@ interface UserDao {
     @Update
     suspend fun save(user: User)
     @Query("SELECT * FROM user WHERE id = :userId")
-    suspend fun findById(userId: String): User
+    suspend fun findById(userId: String): User?
     @Query("SELECT * FROM user")
-    suspend fun findAll(): MutableList<User>
+    suspend fun findAll(): List<User>
     @Query("DELETE FROM user")
     suspend fun removeAll()
 }

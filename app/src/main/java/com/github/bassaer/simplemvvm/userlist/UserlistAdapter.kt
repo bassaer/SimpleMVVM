@@ -1,44 +1,52 @@
 package com.github.bassaer.simplemvvm.userlist
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.data.local.User
+import com.github.bassaer.simplemvvm.databinding.UserItemBinding
 
-class UserListAdapter(var userList: MutableList<User>):
+class UserListAdapter:
     RecyclerView.Adapter<UserListAdapter.UserViewHolder>(){
 
-    class UserViewHolder(cell: View): RecyclerView.ViewHolder(cell) {
-        var userView: TextView = cell.findViewById(R.id.cell_name)
-        var countView: TextView = cell.findViewById(R.id.cell_count)
-    }
+    private var userList: List<User> = arrayListOf(User(name = "u1", count = 0))
+
+    class UserViewHolder(val binding: UserItemBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val cell = LayoutInflater.from(parent.context).inflate(R.layout.user_cell, parent, false)
-        return UserViewHolder(cell)
+        val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context),  parent, false)
+        return UserViewHolder(binding)
     }
 
     override fun getItemCount(): Int = userList.size
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.userView.text = userList[position].name
-        holder.countView.text = userList[position].count.toString()
+        val viewModel = UserItemViewModel()
+        viewModel.userObservable.set(userList[position])
+        viewModel.name.set(userList[position].name)
+        viewModel.name.set(userList[position].count.toString())
+        holder.binding.viewmodel = viewModel
+        Log.d(javaClass.simpleName, "view holder: ${userList[position]}")
     }
 
-    fun update(users: MutableList<User>) {
+    fun update(users: List<User>) {
         userList = users
         notifyDataSetChanged()
+        for (user in userList) {
+            Log.d(javaClass.simpleName, "update user ${user.name}")
+        }
     }
 
     companion object {
         @JvmStatic
         @BindingAdapter("items")
-        fun RecyclerView.bindItems(users: MutableList<User>) {
-            (adapter as UserListAdapter).update(users)
+        fun RecyclerView.bindItems(users: List<User>) {
+            for(user in users) {
+                Log.d(javaClass.simpleName, "bind user ${user.name}")
+            }
+            (this.adapter as UserListAdapter).update(users)
         }
     }
 }

@@ -3,12 +3,11 @@ package com.github.bassaer.simplemvvm.userlist
 import androidx.databinding.BaseObservable
 import androidx.databinding.ObservableField
 import com.github.bassaer.simplemvvm.data.local.User
-import com.github.bassaer.simplemvvm.data.local.UserRepository
 import java.lang.ref.WeakReference
 
-class UserItemViewModel(private val userRepository: UserRepository): BaseObservable() {
+class UserItemViewModel: BaseObservable() {
 
-    private val userObservable = ObservableField<User>()
+    val userObservable = ObservableField<User>()
     val name = ObservableField<String>()
     val count = ObservableField<String>()
 
@@ -18,8 +17,6 @@ class UserItemViewModel(private val userRepository: UserRepository): BaseObserva
         val userId = getUserId() ?: return
         navigator?.get()?.openCounter(userId)
     }
-
-
 
     private fun getUserId() = userObservable.get()?.id
 }

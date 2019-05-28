@@ -1,31 +1,47 @@
 package com.github.bassaer.simplemvvm.userlist
 
+import android.util.Log
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableField
+import com.github.bassaer.simplemvvm.BR
+import com.github.bassaer.simplemvvm.data.UserDataSource
 import com.github.bassaer.simplemvvm.data.local.User
 import com.github.bassaer.simplemvvm.data.local.UserRepository
 
 class UserlistViewModel(private val userRepository: UserRepository): BaseObservable() {
-    var users = ObservableArrayList<User>()
-    val name = ObservableField<String>()
-    val count = ObservableField<Int>()
+    var userlist = ObservableArrayList<User>()
+    //val name = ObservableField<String>()
+    //val count = ObservableField<Int>()
 
     var navigator: UserlistNavigator? = null
 
-    fun loadUserlist() {
-
-    }
-
     fun addNewUser(name: String) {
-        userRepository.addUser(name)
+        val user = User(name = name, count = 0)
+        userlist.add(user)
+        userRepository.saveUser(user)
     }
 
     fun onActivityDestroyed() {
         navigator = null
     }
 
+    fun loadUserlist() {
+        userRepository.getUsers(object : UserDataSource.LoadUserCallback {
+
+            override fun onUserLoaded(users: List<User>) {
+                userlist.clear()
+                userlist.addAll(users)
+                notifyPropertyChanged(BR.empty)
+
+            }
+
+            override fun onDataNotAvailable() {
+                Log.d(javaClass.simpleName, "failed to load user list.")
+            }
+        })
+    }
+
     @Bindable
-    fun isEmpty() = users.isEmpty()
+    fun isEmpty() = userlist.isEmpty()
 }

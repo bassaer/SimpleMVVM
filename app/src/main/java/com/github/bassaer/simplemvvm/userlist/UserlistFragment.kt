@@ -7,20 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.bassaer.simplemvvm.R
-import com.github.bassaer.simplemvvm.data.local.User
-import com.github.bassaer.simplemvvm.data.local.UserDatabase
 import com.github.bassaer.simplemvvm.databinding.UserlistFragBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class UserlistFragment : Fragment(), NewUserDialogFragment.NoticeDialogListener {
 
-    var viewModel: UserlistViewModel? = null
+    lateinit var viewModel: UserlistViewModel
     private lateinit var userlistFragBinding: UserlistFragBinding
-    private lateinit var adapter: UserListAdapter
-    private var userlist = mutableListOf<User>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         userlistFragBinding = UserlistFragBinding.inflate(inflater, container, false)
@@ -35,8 +28,13 @@ class UserlistFragment : Fragment(), NewUserDialogFragment.NoticeDialogListener 
         setupListAdapter()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadUserlist()
+    }
+
     private fun setupFab() {
-        val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
+        val fab = activity?.findViewById<FloatingActionButton>(R.id.new_user_fab)
         fab?.setOnClickListener {
             activity?.let {
                 val dialog = NewUserDialogFragment()
@@ -51,21 +49,12 @@ class UserlistFragment : Fragment(), NewUserDialogFragment.NoticeDialogListener 
             Toast.makeText(requireContext(), getText(R.string.ng_message), Toast.LENGTH_SHORT).show()
             return
         }
-
-        viewModel?.addNewUser(input)
-        val dao = UserDatabase.getInstance(requireContext()).userDao()
-        val user = User(name = input, count = 0)
-        GlobalScope.launch(Dispatchers.Main) {
-            dao.create(user)
-            userlist.add(user)
-            adapter.notifyDataSetChanged()
-        }
+        viewModel.addNewUser(input)
     }
 
     private fun setupListAdapter() {
         val recycleListView = userlistFragBinding.userList
-        adapter = UserListAdapter(userlist)
-        recycleListView.adapter = adapter
+        recycleListView.adapter = UserListAdapter()
     }
 
     companion object {

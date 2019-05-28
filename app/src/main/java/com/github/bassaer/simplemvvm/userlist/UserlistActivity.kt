@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.ViewModelHolder
 import com.github.bassaer.simplemvvm.data.local.UserDatabase
+import com.github.bassaer.simplemvvm.data.local.UserLocalDataSource
 import com.github.bassaer.simplemvvm.data.local.UserRepository
 
 
@@ -56,7 +57,7 @@ class UserlistActivity : AppCompatActivity(), UserlistNavigator {
 
         // TODO Inject
         val userDao = UserDatabase.getInstance(applicationContext).userDao()
-        val repository = UserRepository(userDao)
+        val repository = UserRepository(UserLocalDataSource.getInstance(userDao))
 
         val viewModel = UserlistViewModel(repository)
         val transaction = supportFragmentManager.beginTransaction()
