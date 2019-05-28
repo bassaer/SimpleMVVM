@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.databinding.UserlistFragBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -54,6 +55,7 @@ class UserlistFragment : Fragment(), NewUserDialogFragment.NoticeDialogListener 
 
     private fun setupListAdapter() {
         val recycleListView = userlistFragBinding.userList
+        recycleListView.layoutManager = LinearLayoutManager(context)
         recycleListView.adapter = UserListAdapter()
     }
 

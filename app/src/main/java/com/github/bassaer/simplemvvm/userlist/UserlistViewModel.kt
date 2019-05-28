@@ -11,8 +11,6 @@ import com.github.bassaer.simplemvvm.data.local.UserRepository
 
 class UserlistViewModel(private val userRepository: UserRepository): BaseObservable() {
     var userlist = ObservableArrayList<User>()
-    //val name = ObservableField<String>()
-    //val count = ObservableField<Int>()
 
     var navigator: UserlistNavigator? = null
 
@@ -33,7 +31,6 @@ class UserlistViewModel(private val userRepository: UserRepository): BaseObserva
                 userlist.clear()
                 userlist.addAll(users)
                 notifyPropertyChanged(BR.empty)
-
             }
 
             override fun onDataNotAvailable() {

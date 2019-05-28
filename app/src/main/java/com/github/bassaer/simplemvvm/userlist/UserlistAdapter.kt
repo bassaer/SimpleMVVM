@@ -11,7 +11,7 @@ import com.github.bassaer.simplemvvm.databinding.UserItemBinding
 class UserListAdapter:
     RecyclerView.Adapter<UserListAdapter.UserViewHolder>(){
 
-    private var userList: List<User> = arrayListOf(User(name = "u1", count = 0))
+    private var userList: List<User> = mutableListOf()
 
     class UserViewHolder(val binding: UserItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -26,7 +26,7 @@ class UserListAdapter:
         val viewModel = UserItemViewModel()
         viewModel.userObservable.set(userList[position])
         viewModel.name.set(userList[position].name)
-        viewModel.name.set(userList[position].count.toString())
+        viewModel.count.set(userList[position].count.toString())
         holder.binding.viewmodel = viewModel
         Log.d(javaClass.simpleName, "view holder: ${userList[position]}")
     }
