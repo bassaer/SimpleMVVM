@@ -11,15 +11,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-
-        <!--<com.github.bassaer.simplebase.util.EmptyRecyclerView-->
-                <!--android:id="@+id/user_list"-->
-                <!--android:scrollbars="vertical"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--app:items="@{viewmodel.users}"/>-->
-
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/user_list"
                 android:layout_width="match_parent"

@@ -1,6 +1,5 @@
 package com.github.bassaer.simplemvvm.userlist
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
@@ -28,24 +27,17 @@ class UserListAdapter:
         viewModel.name.set(userList[position].name)
         viewModel.count.set(userList[position].count.toString())
         holder.binding.viewmodel = viewModel
-        Log.d(javaClass.simpleName, "view holder: ${userList[position]}")
     }
 
     fun update(users: List<User>) {
         userList = users
         notifyDataSetChanged()
-        for (user in userList) {
-            Log.d(javaClass.simpleName, "update user ${user.name}")
-        }
     }
 
     companion object {
         @JvmStatic
         @BindingAdapter("items")
         fun RecyclerView.bindItems(users: List<User>) {
-            for(user in users) {
-                Log.d(javaClass.simpleName, "bind user ${user.name}")
-            }
             (this.adapter as UserListAdapter).update(users)
         }
     }

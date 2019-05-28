@@ -57,7 +57,7 @@ class UserlistActivity : AppCompatActivity(), UserlistNavigator {
 
         // TODO Inject
         val userDao = UserDatabase.getInstance(applicationContext).userDao()
-        val repository = UserRepository(UserLocalDataSource.getInstance(userDao))
+        val repository = UserRepository.getInstance(UserLocalDataSource.getInstance(userDao))
 
         val viewModel = UserlistViewModel(repository)
         val transaction = supportFragmentManager.beginTransaction()
