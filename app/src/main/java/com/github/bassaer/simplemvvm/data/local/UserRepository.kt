@@ -38,6 +38,10 @@ class UserRepository(private val userLocalDataSource: UserLocalDataSource): User
         userLocalDataSource.saveUser(user)
     }
 
+    override fun deleteAllUser() {
+        userLocalDataSource.deleteAllUser()
+    }
+
     companion object {
         private var INSTANCE: UserRepository? = null
 

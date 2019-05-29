@@ -1,9 +1,7 @@
 package com.github.bassaer.simplemvvm.userlist
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
@@ -24,7 +22,7 @@ class UserlistFragment : Fragment(), NewUserDialogFragment.NoticeDialogListener 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         userlistFragBinding = UserlistFragBinding.inflate(inflater, container, false)
-        userlistFragBinding.viewmodel  = viewModel
+        userlistFragBinding.viewmodel = viewModel
         setHasOptionsMenu(true)
         return userlistFragBinding.root
     }
@@ -67,14 +65,31 @@ class UserlistFragment : Fragment(), NewUserDialogFragment.NoticeDialogListener 
         }
     }
 
-    class UserListAdapter(private val navigator: UserItemNavigator): RecyclerView.Adapter<UserListAdapter.UserViewHolder>(){
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_reset -> {
+                viewModel.deleteAllUser()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+    class UserListAdapter(private val navigator: UserItemNavigator) :
+        RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
         private var userList: List<User> = mutableListOf()
 
-        class UserViewHolder(val binding: UserItemBinding): RecyclerView.ViewHolder(binding.root)
+        class UserViewHolder(val binding: UserItemBinding) : RecyclerView.ViewHolder(binding.root)
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-            val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context),  parent, false)
+            val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return UserViewHolder(binding)
         }
 

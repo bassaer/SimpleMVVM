@@ -18,6 +18,7 @@ class UserlistViewModel(private val userRepository: UserRepository): BaseObserva
         val user = User(name = name, count = 0)
         userlist.add(user)
         userRepository.createUser(user)
+        notifyPropertyChanged(BR.empty)
     }
 
     fun onActivityDestroyed() {
@@ -38,6 +39,13 @@ class UserlistViewModel(private val userRepository: UserRepository): BaseObserva
             }
         })
     }
+
+    fun deleteAllUser() {
+        userRepository.deleteAllUser()
+        userlist.clear()
+        notifyPropertyChanged(BR.empty)
+    }
+
 
     @Bindable
     fun isEmpty() = userlist.isEmpty()

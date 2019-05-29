@@ -43,6 +43,12 @@ class UserLocalDataSource(private val userDao: UserDao): UserDataSource {
         }
     }
 
+    override fun deleteAllUser() {
+        GlobalScope.launch {
+            userDao.removeAll()
+        }
+    }
+
     companion object {
         private var INSTANCE: UserLocalDataSource? = null
         fun getInstance(userDao: UserDao): UserLocalDataSource {

@@ -16,4 +16,5 @@ interface UserDataSource {
     fun getUser(id: String, callback: GerUserCallback)
     fun createUser(user: User)
     fun saveUser(user: User)
+    fun deleteAllUser()
 }
