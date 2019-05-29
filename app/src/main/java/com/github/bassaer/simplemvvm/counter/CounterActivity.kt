@@ -6,6 +6,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.ViewModelHolder
+import com.github.bassaer.simplemvvm.data.local.UserDatabase
+import com.github.bassaer.simplemvvm.data.local.UserLocalDataSource
+import com.github.bassaer.simplemvvm.data.local.UserRepository
 import kotlinx.android.synthetic.main.counter_act.*
 
 class CounterActivity : AppCompatActivity(), CountNavigator {
@@ -27,7 +30,7 @@ class CounterActivity : AppCompatActivity(), CountNavigator {
         val fragment = findOrCreateViewFragment()
         viewModel = findOrCreateViewModel()
 
-        fragment.setViewModel(viewModel)
+        fragment.countViewModel = viewModel
     }
 
     override fun countUp() {
@@ -52,7 +55,12 @@ class CounterActivity : AppCompatActivity(), CountNavigator {
         if (retainViewModel?.viewModel != null) {
             return retainViewModel.viewModel as CountViewModel
         }
-        val viewModel = CountViewModel()
+
+        // TODO Inject
+        val userDao = UserDatabase.getInstance(applicationContext).userDao()
+        val repository = UserRepository.getInstance(UserLocalDataSource.getInstance(userDao))
+
+        val viewModel = CountViewModel(repository)
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(
             ViewModelHolder.createContainer(viewModel),

@@ -10,11 +10,7 @@ import com.github.bassaer.simplemvvm.databinding.CounterFragBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CounterFragment: Fragment(){
-    private var countViewModel: CountViewModel? = null
-
-    fun setViewModel(viewModel: CountViewModel) {
-        countViewModel = viewModel
-    }
+    lateinit var countViewModel: CountViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -28,10 +24,21 @@ class CounterFragment: Fragment(){
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        val userId = arguments?.getString(ARGUMENT_USER_ID) ?: return
+        countViewModel.loadUser(userId)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        countViewModel.saveCount()
+    }
+
     private fun setupFab() {
         val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
         fab?.setOnClickListener {
-            countViewModel?.countUp()
+            countViewModel.countUp()
         }
     }
 
