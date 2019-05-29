@@ -5,12 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.bassaer.simplemvvm.R
+import com.github.bassaer.simplemvvm.data.local.User
+import com.github.bassaer.simplemvvm.databinding.UserItemBinding
 import com.github.bassaer.simplemvvm.databinding.UserlistFragBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.lang.ref.WeakReference
 
 class UserlistFragment : Fragment(), NewUserDialogFragment.NoticeDialogListener {
 
@@ -58,9 +63,44 @@ class UserlistFragment : Fragment(), NewUserDialogFragment.NoticeDialogListener 
         userlistFragBinding.userList.apply {
             layoutManager = LinearLayoutManager(context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-            adapter = UserListAdapter()
+            adapter = UserListAdapter(activity as UserlistActivity)
+        }
+    }
+
+    class UserListAdapter(private val navigator: UserItemNavigator): RecyclerView.Adapter<UserListAdapter.UserViewHolder>(){
+
+        private var userList: List<User> = mutableListOf()
+
+        class UserViewHolder(val binding: UserItemBinding): RecyclerView.ViewHolder(binding.root)
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+            val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context),  parent, false)
+            return UserViewHolder(binding)
         }
 
+        override fun getItemCount(): Int = userList.size
+
+        override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+            val viewModel = UserItemViewModel()
+            viewModel.navigator = WeakReference(navigator)
+            viewModel.userObservable.set(userList[position])
+            viewModel.name.set(userList[position].name)
+            viewModel.count.set(userList[position].count.toString())
+            holder.binding.viewmodel = viewModel
+        }
+
+        fun update(users: List<User>) {
+            userList = users
+            notifyDataSetChanged()
+        }
+
+        companion object {
+            @JvmStatic
+            @BindingAdapter("items")
+            fun RecyclerView.bindItems(users: List<User>) {
+                (adapter as UserListAdapter).update(users)
+            }
+        }
     }
 
     companion object {

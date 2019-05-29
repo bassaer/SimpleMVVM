@@ -11,9 +11,9 @@ class UserItemViewModel: BaseObservable() {
     val name = ObservableField<String>()
     val count = ObservableField<String>()
 
-    private var navigator: WeakReference<UserItemNavigator>? = null
+    var navigator: WeakReference<UserItemNavigator>? = null
 
-    fun userClicked() {
+    fun itemClicked() {
         val userId = getUserId() ?: return
         navigator?.get()?.openCounter(userId)
     }

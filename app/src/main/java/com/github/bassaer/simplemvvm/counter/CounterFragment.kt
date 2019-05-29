@@ -36,11 +36,12 @@ class CounterFragment: Fragment(){
     }
 
     companion object {
-       private const val STATUS_ID = "STATUS_ID"
-       fun newInstance(id: Int) = CounterFragment().apply {
-           arguments = Bundle().apply {
-               putInt(STATUS_ID, id)
-           }
-       }
+        const val ARGUMENT_USER_ID = "USER_ID"
+        fun newInstance(userId: String) =
+            CounterFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARGUMENT_USER_ID, userId)
+                }
+            }
     }
 }

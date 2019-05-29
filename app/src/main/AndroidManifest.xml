@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".counter.CounterActivity"/>
+        <activity android:name=".counter.CounterActivity"
+        android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

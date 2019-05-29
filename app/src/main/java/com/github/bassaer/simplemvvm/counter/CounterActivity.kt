@@ -20,6 +20,9 @@ class CounterActivity : AppCompatActivity(), CountNavigator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.counter_act)
         setSupportActionBar(toolbar)
+        supportActionBar?.run {
+            setDisplayShowHomeEnabled(true)
+        }
 
         val fragment = findOrCreateViewFragment()
         viewModel = findOrCreateViewModel()
@@ -34,7 +37,8 @@ class CounterActivity : AppCompatActivity(), CountNavigator {
     private fun findOrCreateViewFragment(): CounterFragment {
         var fragment = supportFragmentManager.findFragmentById(R.id.contentFrame) as? CounterFragment
         if (fragment == null) {
-            fragment = CounterFragment.newInstance(0)
+            val userId = intent.getStringExtra(CounterFragment.ARGUMENT_USER_ID)
+            fragment = CounterFragment.newInstance(userId)
             val transaction = supportFragmentManager.beginTransaction()
             transaction.add(R.id.contentFrame, fragment)
             transaction.commit()
