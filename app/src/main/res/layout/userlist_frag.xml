@@ -3,6 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
         <variable name="viewmodel" type="com.github.bassaer.simplemvvm.userlist.UserlistViewModel"/>
     </data>
 
@@ -10,27 +11,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-
-        <!--<com.github.bassaer.simplebase.util.EmptyRecyclerView-->
-                <!--android:id="@+id/user_list"-->
-                <!--android:scrollbars="vertical"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--app:items="@{viewmodel.users}"/>-->
-
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/user_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:items="@{viewmodel.users}" />
+                app:items="@{viewmodel.userlist}" />
 
         <TextView
                 android:id="@+id/empty_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:visibility="gone"
+                android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE }"
                 android:text="@string/no_data_message"
                 android:textSize="@dimen/font_normal"/>
 

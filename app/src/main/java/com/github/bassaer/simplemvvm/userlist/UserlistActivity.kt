@@ -1,19 +1,19 @@
 package com.github.bassaer.simplemvvm.userlist
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.ViewModelHolder
+import com.github.bassaer.simplemvvm.counter.CounterActivity
+import com.github.bassaer.simplemvvm.counter.CounterFragment
 import com.github.bassaer.simplemvvm.data.local.UserDatabase
+import com.github.bassaer.simplemvvm.data.local.UserLocalDataSource
 import com.github.bassaer.simplemvvm.data.local.UserRepository
 
 
-class UserlistActivity : AppCompatActivity(), UserlistNavigator {
-
-    companion object {
-        const val TAG = "USERLIST_VIEWMODEL_TAG"
-    }
+class UserlistActivity : AppCompatActivity(), UserlistNavigator, UserItemNavigator {
 
     private lateinit var viewModel: UserlistViewModel
 
@@ -56,7 +56,7 @@ class UserlistActivity : AppCompatActivity(), UserlistNavigator {
 
         // TODO Inject
         val userDao = UserDatabase.getInstance(applicationContext).userDao()
-        val repository = UserRepository(userDao)
+        val repository = UserRepository.getInstance(UserLocalDataSource.getInstance(userDao))
 
         val viewModel = UserlistViewModel(repository)
         val transaction = supportFragmentManager.beginTransaction()
@@ -73,4 +73,16 @@ class UserlistActivity : AppCompatActivity(), UserlistNavigator {
     override fun addNewUser() {
         // will remove this func
     }
+
+    override fun openCounter(userId: String) {
+        val intent = Intent(this, CounterActivity::class.java)
+        intent.putExtra(CounterFragment.ARGUMENT_USER_ID, userId)
+        startActivityForResult(intent, COUNTER_REQUEST)
+    }
+
+    companion object {
+        const val COUNTER_REQUEST = 0
+        const val TAG = "USERLIST_VIEWMODEL_TAG"
+    }
+
 }
