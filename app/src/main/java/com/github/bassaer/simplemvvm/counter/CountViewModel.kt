@@ -38,4 +38,11 @@ class CountViewModel(private val userRepository: UserRepository): BaseObservable
         count.set(count.get()+1)
     }
 
+    fun reset() {
+        user?.let {
+            it.count = 0
+        }
+        count.set(0)
+    }
+
 }

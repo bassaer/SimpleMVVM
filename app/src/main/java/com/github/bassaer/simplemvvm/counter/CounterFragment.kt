@@ -1,9 +1,7 @@
 package com.github.bassaer.simplemvvm.counter
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.databinding.CounterFragBinding
@@ -15,6 +13,7 @@ class CounterFragment: Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupFab()
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,6 +38,21 @@ class CounterFragment: Fragment(){
         val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
         fab?.setOnClickListener {
             countViewModel.countUp()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_reset -> {
+                countViewModel.reset()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
