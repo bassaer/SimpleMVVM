@@ -10,7 +10,6 @@ import com.github.bassaer.simplemvvm.data.local.UserRepository
 class CountViewModel(private val userRepository: UserRepository): BaseObservable(){
     var user: User? = null
     val count = ObservableInt()
-    val navigator: CountNavigator? = null
 
     fun loadUser(userId: String) {
         userRepository.getUser(userId, object : UserDataSource.GerUserCallback {

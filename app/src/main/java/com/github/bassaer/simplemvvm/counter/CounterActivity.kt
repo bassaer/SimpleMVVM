@@ -9,7 +9,7 @@ import com.github.bassaer.simplemvvm.data.local.UserLocalDataSource
 import com.github.bassaer.simplemvvm.data.local.UserRepository
 import kotlinx.android.synthetic.main.counter_act.*
 
-class CounterActivity : AppCompatActivity(), CountNavigator {
+class CounterActivity : AppCompatActivity() {
 
     companion object {
         const val TAG = "MAIN_VIEW_MODEL_TAG"
@@ -29,10 +29,6 @@ class CounterActivity : AppCompatActivity(), CountNavigator {
         viewModel = findOrCreateViewModel()
 
         fragment.countViewModel = viewModel
-    }
-
-    override fun countUp() {
-
     }
 
     private fun findOrCreateViewFragment(): CounterFragment {
