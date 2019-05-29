@@ -17,7 +17,7 @@ class UserlistViewModel(private val userRepository: UserRepository): BaseObserva
     fun addNewUser(name: String) {
         val user = User(name = name, count = 0)
         userlist.add(user)
-        userRepository.saveUser(user)
+        userRepository.createUser(user)
     }
 
     fun onActivityDestroyed() {

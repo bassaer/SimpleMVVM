@@ -30,6 +30,10 @@ class UserRepository(private val userLocalDataSource: UserLocalDataSource): User
         })
     }
 
+    override fun createUser(user: User) {
+        userLocalDataSource.createUser(user)
+    }
+
     override fun saveUser(user: User) {
         userLocalDataSource.saveUser(user)
     }
