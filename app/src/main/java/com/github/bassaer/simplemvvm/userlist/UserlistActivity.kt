@@ -1,6 +1,5 @@
 package com.github.bassaer.simplemvvm.userlist
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -82,6 +81,7 @@ class UserlistActivity : AppCompatActivity(), UserlistNavigator, UserItemNavigat
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode != COUNTER_REQUEST || resultCode != RESULT_OK) {
             return
         }
