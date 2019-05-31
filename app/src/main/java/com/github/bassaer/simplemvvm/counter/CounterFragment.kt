@@ -1,24 +1,19 @@
 package com.github.bassaer.simplemvvm.counter
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.databinding.CounterFragBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CounterFragment: Fragment(){
-    private var countViewModel: CountViewModel? = null
-
-    fun setViewModel(viewModel: CountViewModel) {
-        countViewModel = viewModel
-    }
+    lateinit var countViewModel: CountViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupFab()
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,10 +23,36 @@ class CounterFragment: Fragment(){
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        val userId = arguments?.getString(ARGUMENT_USER_ID) ?: return
+        countViewModel.loadUser(userId)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        countViewModel.saveCount()
+    }
+
     private fun setupFab() {
         val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
         fab?.setOnClickListener {
-            countViewModel?.countUp()
+            countViewModel.countUp()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_reset -> {
+                countViewModel.reset()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

@@ -80,6 +80,14 @@ class UserlistActivity : AppCompatActivity(), UserlistNavigator, UserItemNavigat
         startActivityForResult(intent, COUNTER_REQUEST)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode != COUNTER_REQUEST || resultCode != RESULT_OK) {
+            return
+        }
+        viewModel.loadUserlist()
+    }
+
     companion object {
         const val COUNTER_REQUEST = 0
         const val TAG = "USERLIST_VIEWMODEL_TAG"

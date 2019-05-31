@@ -31,9 +31,21 @@ class UserLocalDataSource(private val userDao: UserDao): UserDataSource {
         }
     }
 
+    override fun createUser(user: User) {
+        GlobalScope.launch {
+            userDao.create(user)
+        }
+    }
+
     override fun saveUser(user: User) {
         GlobalScope.launch {
             userDao.save(user)
+        }
+    }
+
+    override fun deleteAllUser() {
+        GlobalScope.launch {
+            userDao.removeAll()
         }
     }
 
