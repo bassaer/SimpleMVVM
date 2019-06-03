@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".counter.CounterActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".github.GitHubActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

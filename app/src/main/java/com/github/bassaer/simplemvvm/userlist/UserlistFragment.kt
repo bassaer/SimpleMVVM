@@ -76,6 +76,10 @@ class UserlistFragment : Fragment(), NewUserDialogFragment.NoticeDialogListener 
                 viewModel.deleteAllUser()
                 return true
             }
+            R.id.action_github -> {
+                viewModel.openGitHubRepoList()
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

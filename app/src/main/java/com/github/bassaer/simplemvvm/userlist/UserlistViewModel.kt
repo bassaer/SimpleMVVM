@@ -40,6 +40,10 @@ class UserlistViewModel(private val userRepository: UserRepository): BaseObserva
         })
     }
 
+    fun openGitHubRepoList() {
+        navigator?.openGitHubRepoList()
+    }
+
     fun deleteAllUser() {
         userRepository.deleteAllUser()
         userlist.clear()

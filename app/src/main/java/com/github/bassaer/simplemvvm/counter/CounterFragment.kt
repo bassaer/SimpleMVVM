@@ -35,7 +35,7 @@ class CounterFragment: Fragment(){
     }
 
     private fun setupFab() {
-        val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
+        val fab = activity?.findViewById<FloatingActionButton>(R.id.count_up_fab)
         fab?.setOnClickListener {
             countViewModel.countUp()
         }

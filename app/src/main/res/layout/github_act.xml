@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".counter.CounterActivity">
+        tools:context=".github.GitHubActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_height="wrap_content"
@@ -17,21 +17,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:layout_scrollFlags="scroll|enterAlways"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
             android:id="@+id/contentFrame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/count_up_fab"
+            android:id="@+id/reload_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@drawable/ic_action_add"/>
+            app:srcCompat="@drawable/ic_action_reload"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

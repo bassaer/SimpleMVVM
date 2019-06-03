@@ -11,6 +11,7 @@ import com.github.bassaer.simplemvvm.counter.CounterFragment
 import com.github.bassaer.simplemvvm.data.local.UserDatabase
 import com.github.bassaer.simplemvvm.data.local.UserLocalDataSource
 import com.github.bassaer.simplemvvm.data.local.UserRepository
+import com.github.bassaer.simplemvvm.github.GitHubActivity
 
 
 class UserlistActivity : AppCompatActivity(), UserlistNavigator, UserItemNavigator {
@@ -23,6 +24,7 @@ class UserlistActivity : AppCompatActivity(), UserlistNavigator, UserItemNavigat
         setupToolbar()
         val userlistFragment = findOrCreateViewFragment()
         viewModel = findOrCreateViewModel()
+        viewModel.navigator = this
         userlistFragment.viewModel = viewModel
     }
 
@@ -70,8 +72,9 @@ class UserlistActivity : AppCompatActivity(), UserlistNavigator, UserItemNavigat
         viewModel.onActivityDestroyed()
     }
 
-    override fun addNewUser() {
-        // will remove this func
+    override fun openGitHubRepoList() {
+        val intent = Intent(this, GitHubActivity::class.java)
+        startActivity(intent)
     }
 
     override fun openCounter(userId: String) {
