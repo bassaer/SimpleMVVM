@@ -1,5 +1,6 @@
 package com.github.bassaer.simplemvvm.github
 
+import android.util.Log
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -15,26 +16,23 @@ class GitHubViewModel(private val remoteRepository: RemoteRepository) : BaseObse
     var repoList = ObservableArrayList<RepoInfo>()
 
     fun readRepoList() {
+        Log.d(javaClass.simpleName, "readRepoList!!")
         remoteRepository.getRepoList()
             .readRepos()
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<List<RepoInfo>> {
-                override fun onComplete() {
-                }
+                override fun onComplete() {}
 
-                override fun onSubscribe(d: Disposable) {
-                }
+                override fun onSubscribe(disposable: Disposable) {}
 
-                override fun onNext(list: List<RepoInfo>) {
+                override fun onNext(repos: List<RepoInfo>) {
                     repoList.clear()
-                    repoList.addAll(list)
+                    repoList.addAll(repos)
                     notifyPropertyChanged(BR.empty)
                 }
 
-                override fun onError(e: Throwable) {
-                }
-
+                override fun onError(e: Throwable) {}
             })
     }
 
