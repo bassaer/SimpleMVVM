@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.ViewModelHolder
-import com.github.bassaer.simplemvvm.data.local.UserDatabase
-import com.github.bassaer.simplemvvm.data.local.UserLocalDataSource
-import com.github.bassaer.simplemvvm.data.local.UserRepository
+import com.github.bassaer.simplemvvm.data.source.local.UserDatabase
+import com.github.bassaer.simplemvvm.data.source.local.UserLocalDataSource
+import com.github.bassaer.simplemvvm.data.source.local.UserRepository
 import kotlinx.android.synthetic.main.counter_act.*
 
 class CounterActivity : AppCompatActivity() {

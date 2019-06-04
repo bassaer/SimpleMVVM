@@ -2,7 +2,7 @@ package com.github.bassaer.simplemvvm.userlist
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.ObservableField
-import com.github.bassaer.simplemvvm.data.local.User
+import com.github.bassaer.simplemvvm.data.User
 import java.lang.ref.WeakReference
 
 class UserItemViewModel: BaseObservable() {

@@ -1,6 +1,6 @@
-package com.github.bassaer.simplemvvm.data
+package com.github.bassaer.simplemvvm.data.source
 
-import com.github.bassaer.simplemvvm.data.local.User
+import com.github.bassaer.simplemvvm.data.User
 
 interface UserDataSource {
     interface LoadUserCallback {

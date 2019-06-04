@@ -1,4 +1,4 @@
-package com.github.bassaer.simplemvvm.data.remote
+package com.github.bassaer.simplemvvm.data.source.remote
 
 import java.io.Serializable
 

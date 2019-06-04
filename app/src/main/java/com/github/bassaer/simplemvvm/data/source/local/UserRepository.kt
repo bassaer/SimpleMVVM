@@ -1,10 +1,12 @@
-package com.github.bassaer.simplemvvm.data.local
+package com.github.bassaer.simplemvvm.data.source.local
 
-import com.github.bassaer.simplemvvm.data.UserDataSource
-import com.github.bassaer.simplemvvm.data.UserDataSource.GerUserCallback
-import com.github.bassaer.simplemvvm.data.UserDataSource.LoadUserCallback
+import com.github.bassaer.simplemvvm.data.source.UserDataSource
+import com.github.bassaer.simplemvvm.data.source.UserDataSource.GerUserCallback
+import com.github.bassaer.simplemvvm.data.source.UserDataSource.LoadUserCallback
+import com.github.bassaer.simplemvvm.data.User
 
-class UserRepository(private val userLocalDataSource: UserLocalDataSource): UserDataSource {
+class UserRepository(private val userLocalDataSource: UserLocalDataSource):
+    UserDataSource {
 
     override fun getUsers(callback: LoadUserCallback) {
         userLocalDataSource.getUsers(object : LoadUserCallback {
@@ -46,7 +48,8 @@ class UserRepository(private val userLocalDataSource: UserLocalDataSource): User
         private var INSTANCE: UserRepository? = null
 
         fun getInstance(userLocalDataSource: UserLocalDataSource): UserRepository {
-            return INSTANCE ?: UserRepository(userLocalDataSource).also {
+            return INSTANCE
+                ?: UserRepository(userLocalDataSource).also {
                 INSTANCE = it
             }
         }
