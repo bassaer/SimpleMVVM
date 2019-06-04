@@ -52,14 +52,11 @@ class UserLocalDataSource(private val userDao: UserDao): UserDataSource {
     companion object {
         private var INSTANCE: UserLocalDataSource? = null
         fun getInstance(userDao: UserDao): UserLocalDataSource {
-            if (INSTANCE == null) {
-                synchronized(UserLocalDataSource::class.java) {
-                    if (INSTANCE == null) {
-                        INSTANCE = UserLocalDataSource(userDao)
-                    }
+            return INSTANCE ?: synchronized(UserLocalDataSource::class.java) {
+                INSTANCE ?: UserLocalDataSource(userDao).also {
+                    INSTANCE = it
                 }
             }
-            return INSTANCE!!
         }
     }
 }

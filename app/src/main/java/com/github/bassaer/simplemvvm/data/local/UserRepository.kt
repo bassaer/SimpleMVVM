@@ -46,10 +46,9 @@ class UserRepository(private val userLocalDataSource: UserLocalDataSource): User
         private var INSTANCE: UserRepository? = null
 
         fun getInstance(userLocalDataSource: UserLocalDataSource): UserRepository {
-            if (INSTANCE == null) {
-                INSTANCE = UserRepository(userLocalDataSource)
+            return INSTANCE ?: UserRepository(userLocalDataSource).also {
+                INSTANCE = it
             }
-            return INSTANCE!!
         }
     }
 

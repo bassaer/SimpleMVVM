@@ -14,14 +14,14 @@ abstract class UserDatabase: RoomDatabase(){
         private val lock = Any()
 
         fun getInstance(context: Context): UserDatabase {
+            return INSTANCE ?:
             synchronized(lock) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(
-                        context.applicationContext, UserDatabase::class.java, "User.db")
+                INSTANCE ?: Room.databaseBuilder(context.applicationContext, UserDatabase::class.java, "User.db")
                         .allowMainThreadQueries()
                         .build()
-                }
-                return INSTANCE!!
+                        .also {
+                            INSTANCE = it
+                        }
             }
         }
     }
