@@ -5,8 +5,8 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import com.github.bassaer.simplemvvm.BR
-import com.github.bassaer.simplemvvm.data.remote.RemoteRepository
-import com.github.bassaer.simplemvvm.data.remote.RepoInfo
+import com.github.bassaer.simplemvvm.data.source.remote.RemoteRepository
+import com.github.bassaer.simplemvvm.data.source.remote.RepoInfo
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

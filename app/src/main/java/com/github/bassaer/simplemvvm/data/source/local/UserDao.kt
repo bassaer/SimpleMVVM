@@ -1,10 +1,11 @@
-package com.github.bassaer.simplemvvm.data.local
+package com.github.bassaer.simplemvvm.data.source.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import androidx.room.Update
+import com.github.bassaer.simplemvvm.data.User
 
 @Dao
 interface UserDao {

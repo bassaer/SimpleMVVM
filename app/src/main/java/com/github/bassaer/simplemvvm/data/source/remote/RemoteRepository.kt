@@ -1,4 +1,4 @@
-package com.github.bassaer.simplemvvm.data.remote
+package com.github.bassaer.simplemvvm.data.source.remote
 
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
@@ -26,7 +26,8 @@ class RemoteRepository private constructor() {
         private var INSTANCE: RemoteRepository? = null
 
         fun getInstance() : RemoteRepository =
-            INSTANCE ?: RemoteRepository().also { INSTANCE = it }
+            INSTANCE
+                ?: RemoteRepository().also { INSTANCE = it }
     }
 
 }

@@ -3,9 +3,9 @@ package com.github.bassaer.simplemvvm.counter
 import android.util.Log
 import androidx.databinding.BaseObservable
 import androidx.databinding.ObservableInt
-import com.github.bassaer.simplemvvm.data.UserDataSource
-import com.github.bassaer.simplemvvm.data.local.User
-import com.github.bassaer.simplemvvm.data.local.UserRepository
+import com.github.bassaer.simplemvvm.data.source.UserDataSource
+import com.github.bassaer.simplemvvm.data.User
+import com.github.bassaer.simplemvvm.data.source.local.UserRepository
 
 class CountViewModel(private val userRepository: UserRepository): BaseObservable(){
     var user: User? = null

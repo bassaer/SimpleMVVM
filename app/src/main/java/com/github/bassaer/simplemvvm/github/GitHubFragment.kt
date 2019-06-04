@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.bassaer.simplemvvm.R
-import com.github.bassaer.simplemvvm.data.remote.RepoInfo
+import com.github.bassaer.simplemvvm.data.source.remote.RepoInfo
 import com.github.bassaer.simplemvvm.databinding.GithubFragBinding
 import com.github.bassaer.simplemvvm.databinding.RepoItemBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton

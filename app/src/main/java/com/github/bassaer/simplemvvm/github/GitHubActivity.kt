@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.ViewModelHolder
-import com.github.bassaer.simplemvvm.data.remote.RemoteRepository
+import com.github.bassaer.simplemvvm.data.source.remote.RemoteRepository
 
 class GitHubActivity : AppCompatActivity() {
 

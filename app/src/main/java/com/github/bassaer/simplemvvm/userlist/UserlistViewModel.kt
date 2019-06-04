@@ -5,9 +5,9 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import com.github.bassaer.simplemvvm.BR
-import com.github.bassaer.simplemvvm.data.UserDataSource
-import com.github.bassaer.simplemvvm.data.local.User
-import com.github.bassaer.simplemvvm.data.local.UserRepository
+import com.github.bassaer.simplemvvm.data.source.UserDataSource
+import com.github.bassaer.simplemvvm.data.User
+import com.github.bassaer.simplemvvm.data.source.local.UserRepository
 
 class UserlistViewModel(private val userRepository: UserRepository): BaseObservable() {
     var userlist = ObservableArrayList<User>()

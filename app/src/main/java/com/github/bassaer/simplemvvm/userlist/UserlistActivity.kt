@@ -8,9 +8,9 @@ import com.github.bassaer.simplemvvm.R
 import com.github.bassaer.simplemvvm.ViewModelHolder
 import com.github.bassaer.simplemvvm.counter.CounterActivity
 import com.github.bassaer.simplemvvm.counter.CounterFragment
-import com.github.bassaer.simplemvvm.data.local.UserDatabase
-import com.github.bassaer.simplemvvm.data.local.UserLocalDataSource
-import com.github.bassaer.simplemvvm.data.local.UserRepository
+import com.github.bassaer.simplemvvm.data.source.local.UserDatabase
+import com.github.bassaer.simplemvvm.data.source.local.UserLocalDataSource
+import com.github.bassaer.simplemvvm.data.source.local.UserRepository
 import com.github.bassaer.simplemvvm.github.GitHubActivity
 
 
